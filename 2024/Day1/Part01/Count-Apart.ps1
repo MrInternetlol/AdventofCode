@@ -2,28 +2,26 @@ function Get-PuzzleInput {
     return $(Get-Content -Path ..\Input.txt)
 }
 
-$left = New-Object -TypeName System.Collections.ArrayList
-$right = New-Object -TypeName System.Collections.ArrayList
+$Left = New-Object -TypeName System.Collections.ArrayList
+$Right = New-Object -TypeName System.Collections.ArrayList
 
-$input = Get-PuzzleInput
+$Data = Get-PuzzleInput
 
-foreach($line in $input){
-    $parts = $line -split "\s{3}"
-    $left.Add($parts[0]) | Out-Null
-    $right.Add($parts[1]) | Out-Null
+foreach($Line in $Data){
+    $Parts = $Line -split "\s{3}"
+    $Left.Add($Parts[0]) | Out-Null
+    $Right.Add($Parts[1]) | Out-Null
 }
 
-$left.Sort()
-$right.Sort()
+$Left.Sort()
+$Right.Sort()
 
-[int]$sum = 0
+[int]$Sum = 0
 
-for ($i = 0; $i -le $left.count-1; $i++) {
+for ($I = 0; $I -le $Left.count-1; $I++) {
 
-    $SumApart = [Math]::Abs($left[$i]-$right[$i])
-
-    $sum = $sum + $SumApart
+    $Sum = $Sum + $SumApart
 
 }
 
-return $sum
+return $Sum
