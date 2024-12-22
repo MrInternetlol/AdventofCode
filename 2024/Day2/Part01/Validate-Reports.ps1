@@ -1016,7 +1016,7 @@ function Validate-Reports
         $Levels = $Report -split ' '
         $isSafe = $true
 
-        if ([int]$Levels[1] -gt [int]$Levels[0])
+        if ([int]$Levels[0] -lt [int]$Levels[1])
         {
             $isIncreasing = $true
         }
@@ -1033,12 +1033,12 @@ function Validate-Reports
             }
             if ($isIncreasing)
             {
-                if ($Levels[$i] -le $Levels[$i - 1])
+                if ([int]$Levels[$i] -le [int]$Levels[$i - 1])
                 {
                     $isSafe = $false
                     break
                 }
-                elseif ($Levels[$i] - $Levels[$i - 1] -gt 3)
+                elseif ([int]$Levels[$i] - [int]$Levels[$i - 1] -gt 3)
                 {
                     $isSafe = $false
                     break
@@ -1046,12 +1046,12 @@ function Validate-Reports
             }
             else
             {
-                if ($Levels[$i] -ge $Levels[$i - 1])
+                if ([int]$Levels[$i] -ge [int]$Levels[$i - 1])
                 {
                     $isSafe = $false
                     break
                 }
-                elseif ($Levels[$i-1] - $Levels[$i] -gt 3)
+                elseif ([int]$Levels[$i-1] - [int]$Levels[$i] -gt 3)
                 {
                     $isSafe = $false
                     break
