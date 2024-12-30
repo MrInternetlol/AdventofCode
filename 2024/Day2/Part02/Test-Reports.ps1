@@ -72,13 +72,23 @@ function Test-Reports
             $ValidReports++
         }
         else
-        {
+        {   
             for ($j = 0; $j -lt $Levels.Length; $j++)
             {
-                $TempLevels = $Levels[0..($j-1)] + $Levels[($j+1)..($Levels.Length-1)]
+                $TempLevels = [System.Collections.Generic.List[int]]$Levels.Clone()
+                $TempLevels.RemoveAt($j)
+                $TempLevels = $TempLevels.ToArray()
                 if ($TempLevels.Length -gt 1)
                 {
-                    $TempResult = Test-Levels -Levels $TempLevels -isIncreasing $isIncreasing
+                    if ([int]$TempLevels[0] -lt [int]$TempLevels[1])
+                    {
+                        $isTempIncreasing = $true
+                    }
+                    else
+                    {
+                        $isTempIncreasing = $false
+                    }
+                    $TempResult = Test-Levels -Levels $TempLevels -isIncreasing $isTempIncreasing
                     if ($TempResult)
                     {
                         $ValidReports++
