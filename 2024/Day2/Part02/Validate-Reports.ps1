@@ -2,7 +2,7 @@ function Get-PuzzleInput {
     return $(Get-Content -Path ..\Input.txt)
 }
 
-function Validate-Reports
+function Test-Reports
 {
     param (
         $Reports
@@ -69,4 +69,4 @@ function Validate-Reports
 }
 
 $PuzzleInput = Get-PuzzleInput
-Validate-Reports -Reports $PuzzleInput
+Test-Reports -Reports $PuzzleInput
