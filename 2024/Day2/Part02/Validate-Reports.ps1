@@ -12,7 +12,7 @@ function Validate-Reports
 
     foreach ($Report in $Reports)
     {
-        $Levels = $Report -split ' '
+        [int[]]$Levels = $Report -split ' '
         $isSafe = $true
 
         if ([int]$Levels[0] -lt [int]$Levels[1])
